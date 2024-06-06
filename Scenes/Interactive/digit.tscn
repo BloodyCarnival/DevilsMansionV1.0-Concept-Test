@@ -1,0 +1,75 @@
+[gd_scene load_steps=2 format=3 uid="uid://wwhrjewjbxb5"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_imxlt"]
+height = 0.245
+radial_segments = 10
+
+[node name="Digit" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.37114e-08, 1, -4.37114e-08, 0, -4.37114e-08, -1, -1, -4.37114e-08, 1.91069e-15, 0, 0, 0)
+mesh = SubResource("CylinderMesh_imxlt")
+
+[node name="0" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.999924, 0.0122868, 0, -0.0122868, 0.999924, 0, 0.019233, 0.477604)
+modulate = Color(0, 0, 0, 1)
+text = "0
+"
+outline_size = 4
+
+[node name="1" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.813111, 0.582109, 0, -0.582109, 0.813111, 0, 0.296165, 0.376667)
+modulate = Color(0, 0, 0, 1)
+text = "1
+"
+outline_size = 4
+
+[node name="2" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.295408, 0.955371, 0, -0.955371, 0.295408, 0, 0.461615, 0.134589)
+modulate = Color(0, 0, 0, 1)
+text = "2
+"
+outline_size = 4
+
+[node name="3" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -0.34759, 0.937647, 0, -0.937647, -0.34759, 0, 0.453487, -0.15847)
+modulate = Color(0, 0, 0, 1)
+text = "3
+"
+outline_size = 4
+
+[node name="4" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -0.839743, 0.542984, 0, -0.542984, -0.839743, 0, 0.28102, -0.392566)
+modulate = Color(0, 0, 0, 1)
+text = "4"
+outline_size = 4
+
+[node name="5" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -0.999359, 0.0358064, 0, -0.0358064, -0.999359, 0, -0.00669742, -0.484233)
+modulate = Color(0, 0, 0, 1)
+text = "5"
+outline_size = 4
+
+[node name="6" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -0.786903, -0.617077, 0, 0.617077, -0.786903, 0, -0.304738, -0.369564)
+modulate = Color(0, 0, 0, 1)
+text = "6"
+outline_size = 4
+
+[node name="7" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -0.27369, -0.961818, 0, 0.961818, -0.27369, 0, -0.458268, -0.138337)
+modulate = Color(0, 0, 0, 1)
+text = "7"
+outline_size = 4
+
+[node name="8" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.28614, -0.958188, 0, 0.958188, 0.28614, 0, -0.452628, 0.164312)
+modulate = Color(0, 0, 0, 1)
+text = "8"
+outline_size = 4
+
+[node name="9" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.783769, -0.621052, 0, 0.621052, 0.783769, 0, -0.299716, 0.378088)
+modulate = Color(0, 0, 0, 1)
+text = "9"
+outline_size = 4

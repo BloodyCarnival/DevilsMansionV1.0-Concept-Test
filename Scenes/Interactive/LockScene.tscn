@@ -1,0 +1,85 @@
+[gd_scene load_steps=9 format=3 uid="uid://dab1su1ln2s8s"]
+
+[ext_resource type="Script" path="res://Scenes/Interactive/Lock.gd" id="1_j4tnh"]
+[ext_resource type="PackedScene" uid="uid://wwhrjewjbxb5" path="res://Scenes/Interactive/digit.tscn" id="2_0lyeg"]
+[ext_resource type="Texture2D" uid="uid://bavgpywejjtre" path="res://Scenes/Assets/Gridmap/Textures/doorway1-8a66a8b8c976f7f744760fd72dbbdf3e_wall1_texture.png" id="3_btkwq"]
+[ext_resource type="FontFile" uid="uid://bf2rgdidvvyyd" path="res://Scenes/Assets/Font/DoulosSILR.ttf" id="4_vbvb5"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_04syp"]
+albedo_color = Color(0.329158, 0.329158, 0.329158, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_1jwxg"]
+size = Vector3(2.07, 1, 0.565)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3xdjw"]
+albedo_color = Color(0.966938, 0, 0.328671, 1)
+
+[sub_resource type="PrismMesh" id="PrismMesh_86jcq"]
+size = Vector3(0.25, 0.25, 0.05)
+
+[node name="LockScene" type="Node3D"]
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.57)
+current = true
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 0, 2, 1)
+
+[node name="Lock" type="Node3D" parent="."]
+script = ExtResource("1_j4tnh")
+
+[node name="LockMesh" type="MeshInstance3D" parent="Lock"]
+material_override = SubResource("StandardMaterial3D_04syp")
+mesh = SubResource("BoxMesh_1jwxg")
+
+[node name="CursorMesh" type="MeshInstance3D" parent="Lock"]
+transform = Transform3D(1, 0, 0, 0, -1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0.467365, 0.3165)
+material_override = SubResource("StandardMaterial3D_3xdjw")
+mesh = SubResource("PrismMesh_86jcq")
+
+[node name="Combination" type="Label3D" parent="Lock"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.710337, 0)
+visible = false
+
+[node name="Digits" type="Node3D" parent="Lock"]
+
+[node name="Digit" parent="Lock/Digits" instance=ExtResource("2_0lyeg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.677558, 0, -0.158)
+
+[node name="Digit2" parent="Lock/Digits" instance=ExtResource("2_0lyeg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.221253, 0, -0.158)
+
+[node name="Digit3" parent="Lock/Digits" instance=ExtResource("2_0lyeg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.267697, 0, -0.158)
+
+[node name="Digit4" parent="Lock/Digits" instance=ExtResource("2_0lyeg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.736039, 0, -0.158)
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(2.96419, 0, 0, 0, 2.10233, 0, 0, 0, 1, 0, -0.96338, 0)
+texture = ExtResource("3_btkwq")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="Control"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -275.0
+offset_top = -133.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("4_vbvb5")
+theme_override_font_sizes/font_size = 25
+text = "Shift: Salir
+E: Intentar código"

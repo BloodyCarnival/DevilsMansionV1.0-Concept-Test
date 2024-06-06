@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="Item" load_steps=3 format=3 uid="uid://08oh73ygnhqh"]
+
+[ext_resource type="PackedScene" uid="uid://bu3vmm2mi3cao" path="res://Scenes/Assets/As_Items/RommBKey.glb" id="1_apsfj"]
+[ext_resource type="Script" path="res://Resources/Item.gd" id="1_mxq31"]
+
+[resource]
+resource_name = "RoomBKey"
+script = ExtResource("1_mxq31")
+name = "Llave de la habitación B"
+scene = ExtResource("1_apsfj")
+type = "key"
+effect = "opens door"
+quantity = 1
+description = "Abre la puerta al final del pasillo izquierdo"

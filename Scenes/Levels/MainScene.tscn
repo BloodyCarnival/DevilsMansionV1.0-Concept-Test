@@ -1,0 +1,308 @@
+[gd_scene load_steps=20 format=3 uid="uid://cnn4rejyorise"]
+
+[ext_resource type="Shader" path="res://Scripts/Shaders/PSX1.gdshader" id="1_5sgji"]
+[ext_resource type="PackedScene" uid="uid://bssy8t78a4cj1" path="res://Scenes/Levels/Entrance.tscn" id="1_541cu"]
+[ext_resource type="Script" path="res://Scenes/Levels/LevelManager.gd" id="2_2xb1d"]
+[ext_resource type="PackedScene" uid="uid://bqsyjh2xws38f" path="res://Scenes/Character/player.tscn" id="2_sxax6"]
+[ext_resource type="Script" path="res://Scenes/UI/inventory_ui.gd" id="4_aq54c"]
+[ext_resource type="Script" path="res://Scenes/UI/Healthstatus.gd" id="5_hidar"]
+[ext_resource type="Texture2D" uid="uid://ua5nblg47bhc" path="res://Scenes/UI/Visuals/Label.png" id="7_sndlx"]
+[ext_resource type="FontFile" uid="uid://bf2rgdidvvyyd" path="res://Scenes/Assets/Font/DoulosSILR.ttf" id="8_m6ba6"]
+[ext_resource type="Texture2D" uid="uid://yywiu1uptykj" path="res://Scenes/UI/Visuals/selected_icon.png" id="9_hrfuo"]
+[ext_resource type="PackedScene" uid="uid://br0xdm2pbab1w" path="res://Scenes/UI/slot.tscn" id="10_cotdg"]
+[ext_resource type="Texture2D" uid="uid://d2hos1fnuajpu" path="res://Scenes/UI/Visuals/Move.png" id="11_bhg2j"]
+[ext_resource type="Script" path="res://Scenes/Levels/Lock_Viewport.gd" id="11_koccd"]
+[ext_resource type="PackedScene" uid="uid://dab1su1ln2s8s" path="res://Scenes/Interactive/LockScene.tscn" id="11_ngyp5"]
+[ext_resource type="AudioStream" uid="uid://chc3mtf1vimsw" path="res://Scenes/Assets/Audio/sfx/hit_select_04.ogg" id="12_jnkmw"]
+[ext_resource type="AudioStream" uid="uid://n7kebvwvpt55" path="res://Scenes/Assets/Audio/sfx/equip_sound.ogg" id="12_kkby4"]
+[ext_resource type="AudioStream" uid="uid://cb1gaa60ylmtv" path="res://Scenes/Assets/Audio/music/Horror Vol4 Plague Intensity 2.wav" id="13_6gual"]
+[ext_resource type="AudioStream" uid="uid://d31k10pintala" path="res://Scenes/Assets/Audio/sfx/heal_sound.ogg" id="13_h6sf6"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_o6vf8"]
+shader = ExtResource("1_5sgji")
+shader_parameter/change_color_depth = true
+shader_parameter/target_color_depth = 5
+shader_parameter/dithering = true
+shader_parameter/scale_resolution = true
+shader_parameter/target_resolution_scale = 3
+shader_parameter/enable_recolor = false
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_pgdmq"]
+viewport_path = NodePath("Container/SlotViewport")
+
+[node name="Root" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Main" type="SubViewportContainer" parent="."]
+material = SubResource("ShaderMaterial_o6vf8")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stretch = true
+
+[node name="SubViewport" type="SubViewport" parent="Main"]
+handle_input_locally = false
+size = Vector2i(1024, 768)
+render_target_update_mode = 4
+
+[node name="World" type="Node3D" parent="Main/SubViewport"]
+
+[node name="Player" parent="Main/SubViewport/World" instance=ExtResource("2_sxax6")]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.26445, 0.0191873, 0)
+
+[node name="LevelManager" type="Node" parent="Main/SubViewport/World" groups=["LevelManager"]]
+script = ExtResource("2_2xb1d")
+
+[node name="Entrance" parent="Main/SubViewport/World/LevelManager" instance=ExtResource("1_541cu")]
+
+[node name="InventoryUI" type="CanvasLayer" parent="."]
+unique_name_in_owner = true
+
+[node name="InventoryInterface" type="Control" parent="InventoryUI"]
+unique_name_in_owner = true
+process_mode = 3
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("4_aq54c")
+
+[node name="ColorRect" type="ColorRect" parent="InventoryUI/InventoryInterface"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Healthstatus" type="Sprite2D" parent="InventoryUI/InventoryInterface"]
+unique_name_in_owner = true
+position = Vector2(203, 193)
+script = ExtResource("5_hidar")
+
+[node name="Top Text" type="MarginContainer" parent="InventoryUI/InventoryInterface"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -452.0
+offset_top = 41.0
+offset_right = 453.0
+offset_bottom = 110.0
+grow_horizontal = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 20
+
+[node name="Textures" type="HBoxContainer" parent="InventoryUI/InventoryInterface/Top Text"]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_constants/separation = 70
+alignment = 1
+
+[node name="StatusTexture" type="TextureRect" parent="InventoryUI/InventoryInterface/Top Text/Textures"]
+layout_mode = 2
+texture = ExtResource("7_sndlx")
+
+[node name="Status" type="Label" parent="InventoryUI/InventoryInterface/Top Text/Textures/StatusTexture"]
+layout_mode = 2
+offset_left = 60.5
+offset_top = -31.0
+offset_right = 207.5
+offset_bottom = 62.0
+theme_override_colors/font_color = Color(0.741176, 0.741176, 0.741176, 1)
+theme_override_fonts/font = ExtResource("8_m6ba6")
+theme_override_font_sizes/font_size = 50
+text = "Status"
+horizontal_alignment = 3
+vertical_alignment = 1
+
+[node name="EquipmentTexture" type="TextureRect" parent="InventoryUI/InventoryInterface/Top Text/Textures"]
+layout_mode = 2
+texture = ExtResource("7_sndlx")
+
+[node name="Equipment" type="Label" parent="InventoryUI/InventoryInterface/Top Text/Textures/EquipmentTexture"]
+layout_mode = 2
+offset_left = 15.5
+offset_top = -25.0
+offset_right = 235.5
+offset_bottom = 52.0
+theme_override_colors/font_color = Color(0.741176, 0.741176, 0.741176, 1)
+theme_override_fonts/font = ExtResource("8_m6ba6")
+theme_override_font_sizes/font_size = 50
+text = "Equipment"
+horizontal_alignment = 3
+vertical_alignment = 1
+
+[node name="CommandTexture" type="TextureRect" parent="InventoryUI/InventoryInterface/Top Text/Textures"]
+layout_mode = 2
+texture = ExtResource("7_sndlx")
+
+[node name="Command" type="Label" parent="InventoryUI/InventoryInterface/Top Text/Textures/CommandTexture"]
+layout_mode = 2
+offset_left = 20.5
+offset_top = -25.0
+offset_right = 228.5
+offset_bottom = 52.0
+theme_override_colors/font_color = Color(0.741176, 0.741176, 0.741176, 1)
+theme_override_fonts/font = ExtResource("8_m6ba6")
+theme_override_font_sizes/font_size = 50
+text = "Command"
+horizontal_alignment = 3
+vertical_alignment = 1
+
+[node name="EquipedCommand" type="Label" parent="InventoryUI/InventoryInterface/Top Text/Textures/CommandTexture"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.053
+anchor_top = 1.077
+anchor_right = 1.0
+anchor_bottom = 2.667
+offset_left = 0.0149994
+offset_top = -0.00300217
+offset_right = -2.0
+offset_bottom = 2.987
+theme_override_fonts/font = ExtResource("8_m6ba6")
+theme_override_font_sizes/font_size = 40
+text = "a"
+
+[node name="TextureRect" type="TextureRect" parent="InventoryUI/InventoryInterface"]
+layout_mode = 0
+offset_left = 410.0
+offset_top = 311.0
+offset_right = 612.0
+offset_bottom = 513.0
+texture = ExtResource("9_hrfuo")
+
+[node name="Item" type="Control" parent="InventoryUI/InventoryInterface"]
+unique_name_in_owner = true
+clip_contents = true
+anchors_preset = 0
+offset_left = 283.0
+offset_top = 294.0
+offset_right = 730.0
+offset_bottom = 521.0
+
+[node name="Positions" type="Control" parent="InventoryUI/InventoryInterface"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_lock_ = true
+
+[node name="Center" type="Marker2D" parent="InventoryUI/InventoryInterface/Positions"]
+position = Vector2(511, 413)
+
+[node name="Left0" type="Marker2D" parent="InventoryUI/InventoryInterface/Positions"]
+position = Vector2(331, 413)
+
+[node name="Left1" type="Marker2D" parent="InventoryUI/InventoryInterface/Positions"]
+position = Vector2(184, 413)
+
+[node name="Left2" type="Marker2D" parent="InventoryUI/InventoryInterface/Positions"]
+position = Vector2(46, 413)
+
+[node name="Right0" type="Marker2D" parent="InventoryUI/InventoryInterface/Positions"]
+position = Vector2(674, 413)
+
+[node name="Right1" type="Marker2D" parent="InventoryUI/InventoryInterface/Positions"]
+position = Vector2(826, 413)
+
+[node name="Right2" type="Marker2D" parent="InventoryUI/InventoryInterface/Positions"]
+position = Vector2(976, 413)
+
+[node name="BottomText" type="Control" parent="InventoryUI/InventoryInterface"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Name_item" type="Label" parent="InventoryUI/InventoryInterface/BottomText"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 40.0
+offset_top = 521.0
+offset_right = 173.0
+offset_bottom = 598.0
+theme_override_fonts/font = ExtResource("8_m6ba6")
+theme_override_font_sizes/font_size = 50
+text = "Name:"
+
+[node name="Description" type="Label" parent="InventoryUI/InventoryInterface/BottomText"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 46.0
+offset_top = 598.0
+offset_right = 955.0
+offset_bottom = 730.0
+theme_override_fonts/font = ExtResource("8_m6ba6")
+theme_override_font_sizes/font_size = 40
+text = "a"
+autowrap_mode = 3
+
+[node name="Equiped_item_position" type="Marker2D" parent="InventoryUI/InventoryInterface"]
+position = Vector2(511, 193)
+
+[node name="EquipedSlot" parent="InventoryUI/InventoryInterface" instance=ExtResource("10_cotdg")]
+texture = SubResource("ViewportTexture_pgdmq")
+
+[node name="TextureRect2" type="TextureRect" parent="InventoryUI/InventoryInterface"]
+layout_mode = 0
+offset_left = 362.0
+offset_top = 391.0
+offset_right = 659.0
+offset_bottom = 443.0
+texture = ExtResource("11_bhg2j")
+
+[node name="MoveSound" type="AudioStreamPlayer" parent="InventoryUI/InventoryInterface"]
+stream = ExtResource("12_kkby4")
+
+[node name="EquipSound" type="AudioStreamPlayer" parent="InventoryUI/InventoryInterface"]
+stream = ExtResource("12_jnkmw")
+
+[node name="HealSound" type="AudioStreamPlayer" parent="InventoryUI/InventoryInterface"]
+stream = ExtResource("13_h6sf6")
+
+[node name="Lock" type="SubViewportContainer" parent="."]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stretch = true
+script = ExtResource("11_koccd")
+metadata/_edit_use_anchors_ = true
+
+[node name="SubViewport" type="SubViewport" parent="Lock"]
+own_world_3d = true
+transparent_bg = true
+handle_input_locally = false
+size = Vector2i(1024, 768)
+render_target_update_mode = 0
+
+[node name="LockScene" parent="Lock/SubViewport" instance=ExtResource("11_ngyp5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, -3, 0)
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("13_6gual")
+volume_db = -9.571
+autoplay = true
+bus = &"Music"

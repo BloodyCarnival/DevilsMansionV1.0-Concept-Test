@@ -1,0 +1,198 @@
+[gd_scene load_steps=6 format=3 uid="uid://bgudq3m2ncvlm"]
+
+[ext_resource type="Script" path="res://Scenes/UI/inventory_ui.gd" id="1_x85ik"]
+[ext_resource type="Script" path="res://Scenes/UI/Healthstatus.gd" id="2_ddl57"]
+[ext_resource type="Texture2D" uid="uid://ua5nblg47bhc" path="res://Scenes/UI/Visuals/Label.png" id="3_eolu1"]
+[ext_resource type="Texture2D" uid="uid://yywiu1uptykj" path="res://Scenes/UI/Visuals/selected_icon.png" id="3_m1lcy"]
+[ext_resource type="FontFile" uid="uid://bf2rgdidvvyyd" path="res://Scenes/Assets/Font/DoulosSILR.ttf" id="4_0f2fn"]
+
+[node name="InventoryUI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_x85ik")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Healthstatus" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(203, 193)
+script = ExtResource("2_ddl57")
+
+[node name="Equiped" type="Control" parent="."]
+anchors_preset = 0
+offset_left = 511.0
+offset_top = 193.0
+offset_right = 511.0
+offset_bottom = 193.0
+
+[node name="Top Text" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -452.5
+offset_top = 40.0
+offset_right = 452.5
+offset_bottom = 109.0
+grow_horizontal = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 20
+
+[node name="Textures" type="HBoxContainer" parent="Top Text"]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_constants/separation = 70
+alignment = 1
+
+[node name="StatusTexture" type="TextureRect" parent="Top Text/Textures"]
+layout_mode = 2
+texture = ExtResource("3_eolu1")
+
+[node name="Status" type="Label" parent="Top Text/Textures/StatusTexture"]
+layout_mode = 2
+offset_left = 60.5
+offset_top = -31.0
+offset_right = 207.5
+offset_bottom = 62.0
+theme_override_colors/font_color = Color(0.741176, 0.741176, 0.741176, 1)
+theme_override_fonts/font = ExtResource("4_0f2fn")
+theme_override_font_sizes/font_size = 50
+text = "Status"
+horizontal_alignment = 3
+vertical_alignment = 1
+
+[node name="EquipmentTexture" type="TextureRect" parent="Top Text/Textures"]
+layout_mode = 2
+texture = ExtResource("3_eolu1")
+
+[node name="Equipment" type="Label" parent="Top Text/Textures/EquipmentTexture"]
+layout_mode = 2
+offset_left = 15.5
+offset_top = -25.0
+offset_right = 235.5
+offset_bottom = 52.0
+theme_override_colors/font_color = Color(0.741176, 0.741176, 0.741176, 1)
+theme_override_fonts/font = ExtResource("4_0f2fn")
+theme_override_font_sizes/font_size = 50
+text = "Equipment"
+horizontal_alignment = 3
+vertical_alignment = 1
+
+[node name="CommandTexture" type="TextureRect" parent="Top Text/Textures"]
+layout_mode = 2
+texture = ExtResource("3_eolu1")
+
+[node name="Command" type="Label" parent="Top Text/Textures/CommandTexture"]
+layout_mode = 2
+offset_left = 20.5
+offset_top = -25.0
+offset_right = 228.5
+offset_bottom = 52.0
+theme_override_colors/font_color = Color(0.741176, 0.741176, 0.741176, 1)
+theme_override_fonts/font = ExtResource("4_0f2fn")
+theme_override_font_sizes/font_size = 50
+text = "Command"
+horizontal_alignment = 3
+vertical_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 410.0
+offset_top = 311.0
+offset_right = 612.0
+offset_bottom = 513.0
+texture = ExtResource("3_m1lcy")
+
+[node name="Item" type="Control" parent="."]
+clip_contents = true
+anchors_preset = 0
+offset_left = 283.0
+offset_top = 294.0
+offset_right = 730.0
+offset_bottom = 521.0
+
+[node name="Positions" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_lock_ = true
+
+[node name="Center" type="Marker2D" parent="Positions"]
+position = Vector2(511, 413)
+
+[node name="Left0" type="Marker2D" parent="Positions"]
+position = Vector2(331, 413)
+
+[node name="Left1" type="Marker2D" parent="Positions"]
+position = Vector2(184, 413)
+
+[node name="Left2" type="Marker2D" parent="Positions"]
+position = Vector2(46, 413)
+
+[node name="Right0" type="Marker2D" parent="Positions"]
+position = Vector2(674, 413)
+
+[node name="Right1" type="Marker2D" parent="Positions"]
+position = Vector2(826, 413)
+
+[node name="Right2" type="Marker2D" parent="Positions"]
+position = Vector2(976, 413)
+
+[node name="BottomText" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Name_item" type="Label" parent="BottomText"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 40.0
+offset_top = 521.0
+offset_right = 173.0
+offset_bottom = 598.0
+theme_override_fonts/font = ExtResource("4_0f2fn")
+theme_override_font_sizes/font_size = 50
+text = "Name:"
+
+[node name="Description" type="Label" parent="BottomText"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 46.0
+offset_top = 598.0
+offset_right = 955.0
+offset_bottom = 730.0
+theme_override_fonts/font = ExtResource("4_0f2fn")
+theme_override_font_sizes/font_size = 40
+text = "a"
+autowrap_mode = 3
+
+[node name="ItemCommandOption" type="Label" parent="BottomText"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 744.0
+offset_top = 102.0
+offset_right = 915.0
+offset_bottom = 124.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("4_0f2fn")
+theme_override_font_sizes/font_size = 40
+text = "Command"

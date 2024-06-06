@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="Item" load_steps=3 format=3 uid="uid://mmoreuy6bow0"]
+
+[ext_resource type="PackedScene" uid="uid://bwagcuc0esunk" path="res://Scenes/Assets/As_Items/Medkit.glb" id="1_a1j8t"]
+[ext_resource type="Script" path="res://Resources/Item.gd" id="1_ahkut"]
+
+[resource]
+resource_name = "Medkit"
+script = ExtResource("1_ahkut")
+name = "Botiquín Médico"
+scene = ExtResource("1_a1j8t")
+type = "Healing"
+effect = "40"
+quantity = 1
+description = "Cura una cantidad media de salud."

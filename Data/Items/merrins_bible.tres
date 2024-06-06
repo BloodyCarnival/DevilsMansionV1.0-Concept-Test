@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="Item" load_steps=3 format=3 uid="uid://dvmhqiq74gojx"]
+
+[ext_resource type="Script" path="res://Resources/Item.gd" id="1_8jv8a"]
+[ext_resource type="PackedScene" uid="uid://c7tut1bu1tub2" path="res://Scenes/Assets/As_Items/MerrinsBible.glb" id="1_v5v1h"]
+
+[resource]
+resource_name = "MerrinsBible"
+script = ExtResource("1_8jv8a")
+name = "Biblia de Merrin"
+scene = ExtResource("1_v5v1h")
+type = "Book"
+effect = "Lesser Demon"
+quantity = 1
+description = "Una biblia común que apesta a vómito. Contiene escrituras sobre demonios de mediano poder."

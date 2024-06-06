@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="Item" load_steps=3 format=3 uid="uid://bsj4dnkylk6s6"]
+
+[ext_resource type="Script" path="res://Resources/Item.gd" id="1_jyrqp"]
+[ext_resource type="PackedScene" uid="uid://tgcsr4fldagr" path="res://Scenes/Assets/As_Items/PocketBible.glb" id="1_n4hpi"]
+
+[resource]
+resource_name = "PocketBible"
+script = ExtResource("1_jyrqp")
+name = "Biblia de Bolsillo"
+scene = ExtResource("1_n4hpi")
+type = "Book"
+effect = "Imp"
+quantity = 1
+description = "Una biblia de bolsillo que te dieron en el seminario."

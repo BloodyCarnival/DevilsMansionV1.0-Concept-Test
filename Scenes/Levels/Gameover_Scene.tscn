@@ -1,0 +1,39 @@
+[gd_scene load_steps=3 format=3 uid="uid://ctdmb3s7xcg56"]
+
+[ext_resource type="FontFile" uid="uid://bf2rgdidvvyyd" path="res://Scenes/Assets/Font/DoulosSILR.ttf" id="1_gqi2l"]
+
+[sub_resource type="Environment" id="Environment_w2woa"]
+background_mode = 1
+
+[node name="GameoverScene" type="Node3D"]
+
+[node name="Spawn" type="Marker3D" parent="."]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_w2woa")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="Control"]
+layout_mode = 0
+offset_left = 210.0
+offset_top = 509.0
+offset_right = 805.0
+offset_bottom = 663.0
+theme_override_colors/font_color = Color(0.960784, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_gqi2l")
+theme_override_font_sizes/font_size = 100
+text = "GAME OVER"
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 0, 1.80717, 3.61446)
+
+[node name="SpotLight3D" type="SpotLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0.380476, 3.08396, -0.113772)
+light_color = Color(1, 1, 0.419608, 1)

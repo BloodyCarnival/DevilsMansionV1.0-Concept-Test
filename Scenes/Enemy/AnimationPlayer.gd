@@ -1,0 +1,4 @@
+extends AnimationPlayer
+
+signal on_damage_frame
+signal on_death_animation_finished

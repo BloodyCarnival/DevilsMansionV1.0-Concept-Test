@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://cp1ppsbyraa4r"]
+
+[ext_resource type="Script" path="res://Scripts/3D_trigger_area.gd" id="1_2vrhe"]
+
+[node name="ChangeCameraTrigger" type="Area3D"]
+script = ExtResource("1_2vrhe")
